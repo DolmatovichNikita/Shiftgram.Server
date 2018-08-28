@@ -23,6 +23,7 @@ namespace Shiftgram.Core.Models
         public int Id { get; set; }
         public string Country { get; set; }
         public string Code { get; set; }
+        public string Number { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Account> Accounts { get; set; }
