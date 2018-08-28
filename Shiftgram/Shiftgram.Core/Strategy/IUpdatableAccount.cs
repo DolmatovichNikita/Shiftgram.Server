@@ -5,6 +5,6 @@ namespace Shiftgram.Core.Strategy
 {
 	public interface IUpdatableAccount
 	{
-		Task<DbAnswerCode> Update();
+		Task<DbAnswerCode> Update(AccountUpdateViewModel model);
 	}
 }

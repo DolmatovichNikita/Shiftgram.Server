@@ -79,8 +79,15 @@
     <Compile Include="Repository\AccountRepository.cs" />
     <Compile Include="Repository\IAccountRepository.cs" />
     <Compile Include="Repository\IRepository.cs" />
+    <Compile Include="Strategy\AccountUpdate.cs" />
     <Compile Include="Strategy\AccountUpdateViewModel.cs" />
+    <Compile Include="Strategy\BioUpdate.cs" />
+    <Compile Include="Strategy\GenderUpdate.cs" />
+    <Compile Include="Strategy\InitialsUpdate.cs" />
     <Compile Include="Strategy\IUpdatableAccount.cs" />
+    <Compile Include="Strategy\PhoneUpdate.cs" />
+    <Compile Include="Strategy\PhotoUpdate.cs" />
+    <Compile Include="Strategy\UsernameUpdate.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

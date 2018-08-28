@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Shiftgram.Core.Enums;
 using Shiftgram.Core.Exceptions;
 using Shiftgram.Core.Models;
+using Shiftgram.Core.Strategy;
 
 namespace Shiftgram.Core.Repository
 {
@@ -16,6 +17,10 @@ namespace Shiftgram.Core.Repository
 		{
 			this._context = new ShiftgramContext();
 		}
+
+		public ShiftgramContext Context => this._context;
+
+		public IUpdatableAccount Updatable { get; set; }
 
 		public async Task<int> Add(Account item)
 		{
@@ -70,9 +75,9 @@ namespace Shiftgram.Core.Repository
 			throw new NotImplementedException();
 		}
 
-		public Task<DbAnswerCode> Update()
+		public async Task<DbAnswerCode> Update(AccountUpdateViewModel model)
 		{
-			throw new NotImplementedException();
+			return await this.Updatable.Update(model);
 		}
 	}
 }
