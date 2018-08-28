@@ -9,6 +9,7 @@ namespace Shiftgram.AccountServer.App_Start
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 
     using Ninject;
+	using Ninject.Web.WebApi;
     using Ninject.Web.Common;
 	using Ninject.Web.Common.WebHost;
 	using Shiftgram.Core.Repository;
@@ -46,7 +47,8 @@ namespace Shiftgram.AccountServer.App_Start
             {
                 kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
-                RegisterServices(kernel);
+				System.Web.Http.GlobalConfiguration.Configuration.DependencyResolver = new NinjectDependencyResolver(kernel);
+				RegisterServices(kernel);
                 return kernel;
             }
             catch

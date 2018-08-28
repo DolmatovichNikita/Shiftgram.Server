@@ -10,5 +10,6 @@ namespace Shiftgram.Core.Repository
 		Task<IEnumerable<Account>> GetAll();
 		Task<Account> GetByPhone(string phone);
 		ShiftgramContext Context { get; }
+		IUpdatableAccount Updatable { get; set; }
 	}
 }
