@@ -39,6 +39,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,11 +49,57 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Account.cs">
+      <DependentUpon>ShiftgramModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Gender.cs">
+      <DependentUpon>ShiftgramModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Phone.cs">
+      <DependentUpon>ShiftgramModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ShiftgramModels.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShiftgramModels.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ShiftgramModels.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShiftgramModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ShiftgramModels.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShiftgramModels.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <EntityDeploy Include="Models\ShiftgramModels.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ShiftgramModels.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Models\ShiftgramModels.edmx.diagram">
+      <DependentUpon>ShiftgramModels.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Models\ShiftgramModels.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ShiftgramModels.edmx</DependentUpon>
+      <LastGenOutput>ShiftgramModels.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\ShiftgramModels.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ShiftgramModels.edmx</DependentUpon>
+      <LastGenOutput>ShiftgramModels.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
