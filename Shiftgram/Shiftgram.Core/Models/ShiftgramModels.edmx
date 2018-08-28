@@ -15,8 +15,9 @@
           <Property Name="Bio" Type="nvarchar(max)" />
           <Property Name="Username" Type="nvarchar" MaxLength="50" />
           <Property Name="PhotoUrl" Type="nvarchar(max)" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsAuth" Type="bit" />
           <Property Name="GenderId" Type="int" />
-          <Property Name="PhoneId" Type="int" />
         </EntityType>
         <EntityType Name="Gender">
           <Key>
@@ -32,9 +33,8 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Country" Type="nvarchar" MaxLength="50" />
           <Property Name="Code" Type="nvarchar" MaxLength="50" />
-          <Property Name="Number" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <Association Name="FK_Account_Gender">
+        <Association Name="FK_Account_Account">
           <End Role="Gender" Type="Self.Gender" Multiplicity="0..1" />
           <End Role="Account" Type="Self.Account" Multiplicity="*" />
           <ReferentialConstraint>
@@ -46,28 +46,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Account_Phone">
-          <End Role="Phone" Type="Self.Phone" Multiplicity="0..1" />
-          <End Role="Account" Type="Self.Account" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Phone">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Account">
-              <PropertyRef Name="PhoneId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="ShiftgramModelStoreContainer">
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Phone" EntityType="Self.Phone" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Account_Gender" Association="Self.FK_Account_Gender">
+          <AssociationSet Name="FK_Account_Account" Association="Self.FK_Account_Account">
             <End Role="Gender" EntitySet="Gender" />
-            <End Role="Account" EntitySet="Account" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Account_Phone" Association="Self.FK_Account_Phone">
-            <End Role="Phone" EntitySet="Phone" />
             <End Role="Account" EntitySet="Account" />
           </AssociationSet>
         </EntityContainer>
@@ -86,10 +70,10 @@
           <Property Name="Bio" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PhotoUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsAuth" Type="Boolean" />
           <Property Name="GenderId" Type="Int32" />
-          <Property Name="PhoneId" Type="Int32" />
-          <NavigationProperty Name="Gender" Relationship="Self.FK_Account_Gender" FromRole="Account" ToRole="Gender" />
-          <NavigationProperty Name="Phone" Relationship="Self.FK_Account_Phone" FromRole="Account" ToRole="Phone" />
+          <NavigationProperty Name="Gender" Relationship="Self.FK_Account_Account" FromRole="Account" ToRole="Gender" />
         </EntityType>
         <EntityType Name="Gender">
           <Key>
@@ -97,7 +81,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Accounts" Relationship="Self.FK_Account_Gender" FromRole="Gender" ToRole="Account" />
+          <NavigationProperty Name="Accounts" Relationship="Self.FK_Account_Account" FromRole="Gender" ToRole="Account" />
         </EntityType>
         <EntityType Name="Phone">
           <Key>
@@ -106,10 +90,8 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Accounts" Relationship="Self.FK_Account_Phone" FromRole="Phone" ToRole="Account" />
         </EntityType>
-        <Association Name="FK_Account_Gender">
+        <Association Name="FK_Account_Account">
           <End Role="Gender" Type="Self.Gender" Multiplicity="0..1" />
           <End Role="Account" Type="Self.Account" Multiplicity="*" />
           <ReferentialConstraint>
@@ -121,28 +103,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Account_Phone">
-          <End Role="Phone" Type="Self.Phone" Multiplicity="0..1" />
-          <End Role="Account" Type="Self.Account" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Phone">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Account">
-              <PropertyRef Name="PhoneId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="ShiftgramContext" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Accounts" EntityType="Self.Account" />
           <EntitySet Name="Genders" EntityType="Self.Gender" />
           <EntitySet Name="Phones" EntityType="Self.Phone" />
-          <AssociationSet Name="FK_Account_Gender" Association="Self.FK_Account_Gender">
+          <AssociationSet Name="FK_Account_Account" Association="Self.FK_Account_Account">
             <End Role="Gender" EntitySet="Genders" />
-            <End Role="Account" EntitySet="Accounts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Account_Phone" Association="Self.FK_Account_Phone">
-            <End Role="Phone" EntitySet="Phones" />
             <End Role="Account" EntitySet="Accounts" />
           </AssociationSet>
         </EntityContainer>
@@ -161,8 +127,9 @@
                 <ScalarProperty Name="Bio" ColumnName="Bio" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="PhotoUrl" ColumnName="PhotoUrl" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="IsAuth" ColumnName="IsAuth" />
                 <ScalarProperty Name="GenderId" ColumnName="GenderId" />
-                <ScalarProperty Name="PhoneId" ColumnName="PhoneId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -180,7 +147,6 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Country" ColumnName="Country" />
                 <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="Number" ColumnName="Number" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Threading.Tasks;
 using Shiftgram.Core.Enums;
@@ -70,9 +69,16 @@ namespace Shiftgram.Core.Repository
 			throw new AccountException();
 		}
 
-		public Task<Account> GetByPhone(string phone)
+		public async Task<Account> GetByPhone(string phone)
 		{
-			throw new NotImplementedException();
+			var dbEntry = await this._context.Accounts.FirstOrDefaultAsync<Account>(x => x.Phone == phone);
+
+			if(dbEntry != null)
+			{
+				return dbEntry;
+			}
+
+			throw new AccountException();
 		}
 
 		public async Task<DbAnswerCode> Update(AccountUpdateViewModel model)

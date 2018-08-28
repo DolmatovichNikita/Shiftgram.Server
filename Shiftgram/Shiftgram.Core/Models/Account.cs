@@ -20,10 +20,10 @@ namespace Shiftgram.Core.Models
         public string Bio { get; set; }
         public string Username { get; set; }
         public string PhotoUrl { get; set; }
+        public string Phone { get; set; }
+        public Nullable<bool> IsAuth { get; set; }
         public Nullable<int> GenderId { get; set; }
-        public Nullable<int> PhoneId { get; set; }
     
         public virtual Gender Gender { get; set; }
-        public virtual Phone Phone { get; set; }
     }
 }
