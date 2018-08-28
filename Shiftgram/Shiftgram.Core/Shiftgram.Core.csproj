@@ -79,7 +79,8 @@
     <Compile Include="Repository\AccountRepository.cs" />
     <Compile Include="Repository\IAccountRepository.cs" />
     <Compile Include="Repository\IRepository.cs" />
-    <Compile Include="Strategy\IUpdatable.cs" />
+    <Compile Include="Strategy\AccountUpdateViewModel.cs" />
+    <Compile Include="Strategy\IUpdatableAccount.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
