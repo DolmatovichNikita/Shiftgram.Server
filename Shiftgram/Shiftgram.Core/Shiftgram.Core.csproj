@@ -75,7 +75,9 @@
       <DependentUpon>ShiftgramModels.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\IAccountRepository.cs" />
     <Compile Include="Repository\IRepository.cs" />
+    <Compile Include="Strategy\IUpdatable.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -103,5 +105,6 @@
       <LastGenOutput>ShiftgramModels.cs</LastGenOutput>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
