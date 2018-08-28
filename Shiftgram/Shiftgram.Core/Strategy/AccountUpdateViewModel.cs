@@ -8,8 +8,8 @@
 		public string Bio { get; set; }
 		public string Username { get; set; }
 		public string PhotoUrl { get; set; }
-		public string PhoneCode { get; set; }
 		public string Phone { get; set; }
+		public bool IsAuth { get; set; }
 		public string GenderName { get; set; }
 		public string UpdateType { get; set; }
 	}

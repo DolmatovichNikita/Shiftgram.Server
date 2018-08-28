@@ -3,13 +3,14 @@ using System.Threading.Tasks;
 using Shiftgram.Core.Enums;
 using Shiftgram.Core.Models;
 
+
 namespace Shiftgram.Core.Strategy
 {
-	internal class PhoneUpdate: IUpdatableAccount
+	internal class AuthUpdate: IUpdatableAccount
 	{
 		private ShiftgramContext _context;
 
-		public PhoneUpdate(ShiftgramContext context)
+		public AuthUpdate(ShiftgramContext context)
 		{
 			this._context = context;
 		}
@@ -20,7 +21,7 @@ namespace Shiftgram.Core.Strategy
 
 			if (dbEntry != null)
 			{
-				dbEntry.Phone = model.Phone;
+				dbEntry.IsAuth = model.IsAuth;
 				int rows = await this._context.SaveChangesAsync();
 
 				if (rows > 0)

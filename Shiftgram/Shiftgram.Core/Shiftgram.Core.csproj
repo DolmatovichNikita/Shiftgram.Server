@@ -81,6 +81,7 @@
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Strategy\AccountUpdate.cs" />
     <Compile Include="Strategy\AccountUpdateViewModel.cs" />
+    <Compile Include="Strategy\AuthUpdate.cs" />
     <Compile Include="Strategy\BioUpdate.cs" />
     <Compile Include="Strategy\GenderUpdate.cs" />
     <Compile Include="Strategy\InitialsUpdate.cs" />
