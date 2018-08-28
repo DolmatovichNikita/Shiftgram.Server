@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\DbAnswerCode.cs" />
+    <Compile Include="Exceptions\AccountException.cs" />
     <Compile Include="Models\Account.cs">
       <DependentUpon>ShiftgramModels.tt</DependentUpon>
     </Compile>
@@ -75,6 +76,7 @@
       <DependentUpon>ShiftgramModels.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\AccountRepository.cs" />
     <Compile Include="Repository\IAccountRepository.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Strategy\IUpdatable.cs" />
