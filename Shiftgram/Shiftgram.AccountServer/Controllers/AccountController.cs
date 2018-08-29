@@ -56,7 +56,7 @@ namespace Shiftgram.AccountServer.Controllers
 		}
 
 		[HttpGet]
-		[Route("{id}")]
+		[Route("{id:int}")]
 		public async Task<IHttpActionResult> GetAccountById(int id)
 		{
 			try
