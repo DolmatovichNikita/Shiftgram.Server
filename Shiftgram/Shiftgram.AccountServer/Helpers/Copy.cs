@@ -10,7 +10,7 @@ namespace Shiftgram.AccountServer.Helpers
 			return new Verification
 			{
 				Id = model.Id,
-				VerifyCode = model.Code
+				VerifyCode = model.Code.ToString()
 			};
 		}
 	}

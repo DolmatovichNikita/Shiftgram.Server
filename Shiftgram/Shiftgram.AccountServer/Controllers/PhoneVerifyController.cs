@@ -2,7 +2,7 @@
 using Shiftgram.AccountServer.Models;
 using Shiftgram.Core.Repository;
 using System;
-using System.Web;
+using System.Threading.Tasks;
 using System.Web.Http;
 using Twilio;
 using Twilio.Rest.Api.V2010.Account;
@@ -26,7 +26,6 @@ namespace Shiftgram.AccountServer.Controllers
 		}
 
 		[HttpGet]
-		[Route("{phone}")]
 		public IHttpActionResult SendSMS(PhoneVerifyViewModel model)
         {
 			TwilioClient.Init(this._accountSid, this._accountAuth);
@@ -44,9 +43,22 @@ namespace Shiftgram.AccountServer.Controllers
 		}
 
 		[HttpPost]
-		public IHttpActionResult IsAuth(PhoneVerifyViewModel model)
+		public async Task<IHttpActionResult> IsAuth(PhoneVerifyViewModel model)
 		{
+			if(model != null)
+			{
+				var verification = await this._verificationRepository.GetById(model.Id);
+				if(verification != null)
+				{
+					if(verification.Account.Phone == model.Number && verification.VerifyCode == model.Code.ToString())
+					{
+						await this._verificationRepository.DeleteCode(model.Number);
+						return Ok();
+					}
+				}
+			}
 
+			return BadRequest();
 		}
 
 		private int GenerateCode()
