@@ -12,19 +12,11 @@ namespace Shiftgram.Core.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Account
+    public partial class Verification
     {
         public int Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Bio { get; set; }
-        public string Username { get; set; }
-        public string PhotoUrl { get; set; }
-        public string Phone { get; set; }
-        public Nullable<bool> IsAuth { get; set; }
-        public Nullable<int> GenderId { get; set; }
+        public string VerifyCode { get; set; }
     
-        public virtual Gender Gender { get; set; }
-        public virtual Verification Verification { get; set; }
+        public virtual Account Account { get; set; }
     }
 }

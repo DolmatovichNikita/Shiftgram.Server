@@ -34,6 +34,13 @@
           <Property Name="Country" Type="nvarchar" MaxLength="50" />
           <Property Name="Code" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="Verification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="VerifyCode" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <Association Name="FK_Account_Account">
           <End Role="Gender" Type="Self.Gender" Multiplicity="0..1" />
           <End Role="Account" Type="Self.Account" Multiplicity="*" />
@@ -46,13 +53,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Verification_Account">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="Verification" Type="Self.Verification" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Verification">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="ShiftgramModelStoreContainer">
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Phone" EntityType="Self.Phone" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Verification" EntityType="Self.Verification" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Account_Account" Association="Self.FK_Account_Account">
             <End Role="Gender" EntitySet="Gender" />
             <End Role="Account" EntitySet="Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Verification_Account" Association="Self.FK_Verification_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Verification" EntitySet="Verification" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -74,6 +98,7 @@
           <Property Name="IsAuth" Type="Boolean" />
           <Property Name="GenderId" Type="Int32" />
           <NavigationProperty Name="Gender" Relationship="Self.FK_Account_Account" FromRole="Account" ToRole="Gender" />
+          <NavigationProperty Name="Verification" Relationship="Self.FK_Verification_Account" FromRole="Account" ToRole="Verification" />
         </EntityType>
         <EntityType Name="Gender">
           <Key>
@@ -91,6 +116,14 @@
           <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="Verification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="VerifyCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Account" Relationship="Self.FK_Verification_Account" FromRole="Verification" ToRole="Account" />
+        </EntityType>
         <Association Name="FK_Account_Account">
           <End Role="Gender" Type="Self.Gender" Multiplicity="0..1" />
           <End Role="Account" Type="Self.Account" Multiplicity="*" />
@@ -103,13 +136,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Verification_Account">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="Verification" Type="Self.Verification" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Verification">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="ShiftgramContext" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Accounts" EntityType="Self.Account" />
           <EntitySet Name="Genders" EntityType="Self.Gender" />
           <EntitySet Name="Phones" EntityType="Self.Phone" />
+          <EntitySet Name="Verifications" EntityType="Self.Verification" />
           <AssociationSet Name="FK_Account_Account" Association="Self.FK_Account_Account">
             <End Role="Gender" EntitySet="Genders" />
             <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Verification_Account" Association="Self.FK_Verification_Account">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Verification" EntitySet="Verifications" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -147,6 +197,14 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Country" ColumnName="Country" />
                 <ScalarProperty Name="Code" ColumnName="Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Verifications">
+            <EntityTypeMapping TypeName="ShiftgramModel.Verification">
+              <MappingFragment StoreEntitySet="Verification">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="VerifyCode" ColumnName="VerifyCode" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
