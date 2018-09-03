@@ -65,6 +65,7 @@ namespace Shiftgram.AccountServer.App_Start
         private static void RegisterServices(IKernel kernel)
         {
 			kernel.Bind<IAccountRepository>().To<AccountRepository>();
+			kernel.Bind<IVerificationRepository>().To<VerificationRepository>();
         }        
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Shiftgram.AccountServer.Models;
+using Shiftgram.Core.Repository;
 using System;
 using System.Web;
 using System.Web.Http;
@@ -15,10 +16,12 @@ namespace Shiftgram.AccountServer.Controllers
 		private readonly string _accountAuth = "f0fffdcf057adcd84828cfe1534c41e1";
 		private readonly string _from = "+48732230630";
 		private int _number;
+		private IVerificationRepository _verificationRepository;
 
-		public PhoneVerifyController()
+		public PhoneVerifyController(IVerificationRepository verificationRepository)
 		{
 			this._number = this.GenerateCode();
+			this._verificationRepository = verificationRepository;
 		}
 
 		[HttpGet]
@@ -32,6 +35,7 @@ namespace Shiftgram.AccountServer.Controllers
 			var from = new PhoneNumber(this._from);
 			var body = $"Your verification code: {this._number}";
 			var message = MessageResource.Create(to: to, from: from, body: body);
+			this._verificationRepository.AddCode()
 
 			return Ok(message.Sid);
 		}
