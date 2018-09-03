@@ -95,6 +95,7 @@
     <Compile Include="Repository\AccountRepository.cs" />
     <Compile Include="Repository\IAccountRepository.cs" />
     <Compile Include="Repository\IRepository.cs" />
+    <Compile Include="Repository\IVerificationRepository.cs" />
     <Compile Include="Strategy\AccountUpdate.cs" />
     <Compile Include="Strategy\AccountUpdateViewModel.cs" />
     <Compile Include="Strategy\AuthUpdate.cs" />
