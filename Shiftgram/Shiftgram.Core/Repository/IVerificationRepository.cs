@@ -7,5 +7,6 @@ namespace Shiftgram.Core.Repository
 	{
 		Task AddCode(Verification item);
 		Task DeleteCode(string phone);
+		Task<Verification> GetById(int id);
 	}
 }

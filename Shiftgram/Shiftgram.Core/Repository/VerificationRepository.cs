@@ -35,5 +35,17 @@ namespace Shiftgram.Core.Repository
 				await this._context.SaveChangesAsync();
 			}
 		}
+
+		public async Task<Verification> GetById(int id)
+		{
+			var dbEntry = await this._context.Verifications.FirstOrDefaultAsync(x => x.Id == id);
+
+			if(dbEntry != null)
+			{
+				return dbEntry;
+			}
+
+			throw new AccountException();
+		}
 	}
 }

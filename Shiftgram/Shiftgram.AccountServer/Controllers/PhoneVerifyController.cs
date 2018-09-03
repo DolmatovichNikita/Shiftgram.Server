@@ -46,15 +46,7 @@ namespace Shiftgram.AccountServer.Controllers
 		[HttpPost]
 		public IHttpActionResult IsAuth(PhoneVerifyViewModel model)
 		{
-			if(model != null)
-			{
-				if(HttpContext.Current.Session[model.Number] as string == model.Code)
-				{
-					return Ok();
-				}
-			}
 
-			return BadRequest();
 		}
 
 		private int GenerateCode()
