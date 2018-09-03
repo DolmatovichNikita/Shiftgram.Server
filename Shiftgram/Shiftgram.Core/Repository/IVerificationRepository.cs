@@ -3,8 +3,9 @@ using System.Threading.Tasks;
 
 namespace Shiftgram.Core.Repository
 {
-	public interface IVerificationRepository: IRepository<Verification>
+	public interface IVerificationRepository
 	{
-		Task Update(string phone);
+		Task AddCode(Verification item);
+		Task DeleteCode(string phone);
 	}
 }
