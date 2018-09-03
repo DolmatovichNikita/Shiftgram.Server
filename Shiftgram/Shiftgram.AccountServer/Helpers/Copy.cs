@@ -13,5 +13,14 @@ namespace Shiftgram.AccountServer.Helpers
 				VerifyCode = model.Code.ToString()
 			};
 		}
+
+		public static Friend CopyToFriend(FriendViewModel model)
+		{
+			return new Friend
+			{
+				AccountAId = model.AccountAId,
+				AccountBId = model.AccountBId
+			};
+		}
 	}
 }
