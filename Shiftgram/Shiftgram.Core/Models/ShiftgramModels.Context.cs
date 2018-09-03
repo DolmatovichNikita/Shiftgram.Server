@@ -26,6 +26,7 @@ namespace Shiftgram.Core.Models
         }
     
         public virtual DbSet<Account> Accounts { get; set; }
+        public virtual DbSet<Friend> Friends { get; set; }
         public virtual DbSet<Gender> Genders { get; set; }
         public virtual DbSet<Phone> Phones { get; set; }
         public virtual DbSet<Verification> Verifications { get; set; }

@@ -67,6 +67,9 @@
     <Compile Include="Models\Account.cs">
       <DependentUpon>ShiftgramModels.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Friend.cs">
+      <DependentUpon>ShiftgramModels.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Gender.cs">
       <DependentUpon>ShiftgramModels.tt</DependentUpon>
     </Compile>

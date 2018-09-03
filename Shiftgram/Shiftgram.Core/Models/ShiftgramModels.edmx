@@ -19,6 +19,14 @@
           <Property Name="IsAuth" Type="bit" />
           <Property Name="GenderId" Type="int" />
         </EntityType>
+        <EntityType Name="Friend">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountAId" Type="int" />
+          <Property Name="AccountBId" Type="int" />
+        </EntityType>
         <EntityType Name="Gender">
           <Key>
             <PropertyRef Name="Id" />
@@ -53,6 +61,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Friend_Account">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="Friend" Type="Self.Friend" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Friend">
+              <PropertyRef Name="AccountAId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Friend_Account1">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="Friend" Type="Self.Friend" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Friend">
+              <PropertyRef Name="AccountBId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Verification_Account">
           <End Role="Account" Type="Self.Account" Multiplicity="1" />
           <End Role="Verification" Type="Self.Verification" Multiplicity="0..1" />
@@ -67,12 +99,21 @@
         </Association>
         <EntityContainer Name="ShiftgramModelStoreContainer">
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Friend" EntityType="Self.Friend" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Phone" EntityType="Self.Phone" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Verification" EntityType="Self.Verification" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Account_Account" Association="Self.FK_Account_Account">
             <End Role="Gender" EntitySet="Gender" />
             <End Role="Account" EntitySet="Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Friend_Account" Association="Self.FK_Friend_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Friend" EntitySet="Friend" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Friend_Account1" Association="Self.FK_Friend_Account1">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Friend" EntitySet="Friend" />
           </AssociationSet>
           <AssociationSet Name="FK_Verification_Account" Association="Self.FK_Verification_Account">
             <End Role="Account" EntitySet="Account" />
@@ -98,7 +139,19 @@
           <Property Name="IsAuth" Type="Boolean" />
           <Property Name="GenderId" Type="Int32" />
           <NavigationProperty Name="Gender" Relationship="Self.FK_Account_Account" FromRole="Account" ToRole="Gender" />
+          <NavigationProperty Name="Friends" Relationship="Self.FK_Friend_Account" FromRole="Account" ToRole="Friend" />
+          <NavigationProperty Name="Friends1" Relationship="Self.FK_Friend_Account1" FromRole="Account" ToRole="Friend" />
           <NavigationProperty Name="Verification" Relationship="Self.FK_Verification_Account" FromRole="Account" ToRole="Verification" />
+        </EntityType>
+        <EntityType Name="Friend">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountAId" Type="Int32" />
+          <Property Name="AccountBId" Type="Int32" />
+          <NavigationProperty Name="Account" Relationship="Self.FK_Friend_Account" FromRole="Friend" ToRole="Account" />
+          <NavigationProperty Name="Account1" Relationship="Self.FK_Friend_Account1" FromRole="Friend" ToRole="Account" />
         </EntityType>
         <EntityType Name="Gender">
           <Key>
@@ -136,6 +189,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Friend_Account">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="Friend" Type="Self.Friend" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Friend">
+              <PropertyRef Name="AccountAId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Friend_Account1">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="Friend" Type="Self.Friend" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Friend">
+              <PropertyRef Name="AccountBId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Verification_Account">
           <End Role="Account" Type="Self.Account" Multiplicity="1" />
           <End Role="Verification" Type="Self.Verification" Multiplicity="0..1" />
@@ -150,12 +227,21 @@
         </Association>
         <EntityContainer Name="ShiftgramContext" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Accounts" EntityType="Self.Account" />
+          <EntitySet Name="Friends" EntityType="Self.Friend" />
           <EntitySet Name="Genders" EntityType="Self.Gender" />
           <EntitySet Name="Phones" EntityType="Self.Phone" />
           <EntitySet Name="Verifications" EntityType="Self.Verification" />
           <AssociationSet Name="FK_Account_Account" Association="Self.FK_Account_Account">
             <End Role="Gender" EntitySet="Genders" />
             <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Friend_Account" Association="Self.FK_Friend_Account">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Friend" EntitySet="Friends" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Friend_Account1" Association="Self.FK_Friend_Account1">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Friend" EntitySet="Friends" />
           </AssociationSet>
           <AssociationSet Name="FK_Verification_Account" Association="Self.FK_Verification_Account">
             <End Role="Account" EntitySet="Accounts" />
@@ -180,6 +266,15 @@
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="IsAuth" ColumnName="IsAuth" />
                 <ScalarProperty Name="GenderId" ColumnName="GenderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Friends">
+            <EntityTypeMapping TypeName="ShiftgramModel.Friend">
+              <MappingFragment StoreEntitySet="Friend">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AccountAId" ColumnName="AccountAId" />
+                <ScalarProperty Name="AccountBId" ColumnName="AccountBId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

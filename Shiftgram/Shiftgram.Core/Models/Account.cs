@@ -14,6 +14,13 @@ namespace Shiftgram.Core.Models
     
     public partial class Account
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Account()
+        {
+            this.Friends = new HashSet<Friend>();
+            this.Friends1 = new HashSet<Friend>();
+        }
+    
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -25,6 +32,10 @@ namespace Shiftgram.Core.Models
         public Nullable<int> GenderId { get; set; }
     
         public virtual Gender Gender { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Friend> Friends { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Friend> Friends1 { get; set; }
         public virtual Verification Verification { get; set; }
     }
 }
