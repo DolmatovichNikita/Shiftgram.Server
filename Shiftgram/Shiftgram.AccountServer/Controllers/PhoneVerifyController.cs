@@ -1,4 +1,5 @@
-﻿using Shiftgram.AccountServer.Models;
+﻿using Shiftgram.AccountServer.Helpers;
+using Shiftgram.AccountServer.Models;
 using Shiftgram.Core.Repository;
 using System;
 using System.Web;
@@ -26,16 +27,18 @@ namespace Shiftgram.AccountServer.Controllers
 
 		[HttpGet]
 		[Route("{phone}")]
-		public IHttpActionResult SendSMS(string phone)
+		public IHttpActionResult SendSMS(PhoneVerifyViewModel model)
         {
 			TwilioClient.Init(this._accountSid, this._accountAuth);
 
-			var numberPhone = "+" + phone;
+			var numberPhone = "+" + model.Number;
 			var to = new PhoneNumber(numberPhone);
 			var from = new PhoneNumber(this._from);
 			var body = $"Your verification code: {this._number}";
 			var message = MessageResource.Create(to: to, from: from, body: body);
-			this._verificationRepository.AddCode()
+			model.Code = this._number;
+			var item = Copy.CopyToVerification(model);
+			this._verificationRepository.AddCode(item);
 
 			return Ok(message.Sid);
 		}
