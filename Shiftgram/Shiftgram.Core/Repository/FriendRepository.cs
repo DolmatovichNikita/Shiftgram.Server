@@ -57,5 +57,17 @@ namespace Shiftgram.Core.Repository
 
 			throw new AccountException();
 		}
+
+		private async Task<bool> IsExistAccountA(int id)
+		{
+			var dbEntry = await this._context.Friends.FirstOrDefaultAsync(x => x.AccountAId == id);
+
+			if(dbEntry != null)
+			{
+				return true;
+			}
+
+			return false;
+		}
 	}
 }
