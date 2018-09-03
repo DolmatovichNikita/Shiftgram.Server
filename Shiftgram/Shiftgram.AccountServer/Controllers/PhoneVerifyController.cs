@@ -1,5 +1,6 @@
 ﻿using Shiftgram.AccountServer.Helpers;
 using Shiftgram.AccountServer.Models;
+using Shiftgram.Core.Exceptions;
 using Shiftgram.Core.Repository;
 using System;
 using System.Threading.Tasks;
@@ -37,7 +38,15 @@ namespace Shiftgram.AccountServer.Controllers
 			var message = MessageResource.Create(to: to, from: from, body: body);
 			model.Code = this._number;
 			var item = Copy.CopyToVerification(model);
-			this._verificationRepository.AddCode(item);
+
+			try
+			{
+				this._verificationRepository.AddCode(item);
+			}
+			catch(AccountException)
+			{
+				return BadRequest();
+			}
 
 			return Ok(message.Sid);
 		}
@@ -47,14 +56,21 @@ namespace Shiftgram.AccountServer.Controllers
 		{
 			if(model != null)
 			{
-				var verification = await this._verificationRepository.GetById(model.Id);
-				if(verification != null)
+				try
 				{
-					if(verification.Account.Phone == model.Number && verification.VerifyCode == model.Code.ToString())
+					var verification = await this._verificationRepository.GetById(model.Id);
+					if (verification != null)
 					{
-						await this._verificationRepository.DeleteCode(model.Number);
-						return Ok();
+						if (verification.Account.Phone == model.Number && verification.VerifyCode == model.Code.ToString())
+						{
+							await this._verificationRepository.DeleteCode(model.Number);
+							return Ok();
+						}
 					}
+				}
+				catch(AccountException)
+				{
+					return BadRequest();
 				}
 			}
 
