@@ -1,5 +1,7 @@
 ﻿using Shiftgram.AccountServer.Models;
 using Shiftgram.Core.Models;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Shiftgram.AccountServer.Helpers
 {
@@ -37,6 +39,23 @@ namespace Shiftgram.AccountServer.Helpers
 				PhotoUrl = account.PhotoUrl,
 				IsAuth = bool.Parse(account.IsAuth.ToString())
 			};
+		}
+
+		public static IEnumerable<AccountFriendViewModel> CopyToAccountFriendViewModel(List<Account> accounts)
+		{
+			List<AccountFriendViewModel> models = new List<AccountFriendViewModel>();
+
+			accounts.ForEach(item =>
+			{
+				models.Add(new AccountFriendViewModel
+				{
+					Id = item.Id,
+					PhotoUrl = item.PhotoUrl,
+					Username = item.Username
+				});
+			});
+
+			return models;
 		}
 	}
 }

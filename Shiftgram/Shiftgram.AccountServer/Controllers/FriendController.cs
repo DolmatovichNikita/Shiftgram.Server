@@ -2,7 +2,9 @@
 using Shiftgram.AccountServer.Models;
 using Shiftgram.Core.Enums;
 using Shiftgram.Core.Exceptions;
+using Shiftgram.Core.Models;
 using Shiftgram.Core.Repository;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
 
@@ -46,9 +48,9 @@ namespace Shiftgram.AccountServer.Controllers
 		}
 
 		[HttpDelete]
-		public async Task<IHttpActionResult> DeleteFriend(int accountBId)
+		public async Task<IHttpActionResult> DeleteFriend(FriendViewModel model)
 		{
-			var code = await this._friendRepository.Delete(accountBId);
+			var code = await this._friendRepository.Delete(model.AccountAId, model.AccountBId);
 
 			if(code == DbAnswerCode.Ok)
 			{
@@ -56,6 +58,16 @@ namespace Shiftgram.AccountServer.Controllers
 			}
 
 			return BadRequest();
+		}
+
+		[HttpGet]
+		[Route("{accountAId:int}")]
+		public async Task<IHttpActionResult> GetFriends(int accountAId)
+		{
+			List<Account> accounts = await this._friendRepository.GetFriends(accountAId) as List<Account>;
+			var friends = Copy.CopyToAccountFriendViewModel(accounts);
+
+			return Ok(friends);
 		}
     }
 }

@@ -1,8 +1,10 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Threading.Tasks;
 using Shiftgram.Core.Enums;
 using Shiftgram.Core.Exceptions;
 using Shiftgram.Core.Models;
+using System.Linq;
 
 namespace Shiftgram.Core.Repository
 {
@@ -28,9 +30,9 @@ namespace Shiftgram.Core.Repository
 			throw new AccountException();
 		}
 
-		public async Task<DbAnswerCode> Delete(int id)
+		public async Task<DbAnswerCode> Delete(int accountAId, int accountBId)
 		{
-			var dbEntry = await this._context.Friends.FirstOrDefaultAsync(x => x.AccountBId == id);
+			var dbEntry = await this._context.Friends.FirstOrDefaultAsync(x => x.AccountBId == accountBId && x.AccountAId == accountAId);
 
 			if(dbEntry != null)
 			{
@@ -56,6 +58,14 @@ namespace Shiftgram.Core.Repository
 			}
 
 			throw new AccountException();
+		}
+
+		public async Task<IEnumerable<Account>> GetFriends(int accountAId)
+		{
+			var friends = await this._context.Friends.Where(x => x.AccountAId == accountAId).Select(x => x.AccountBId).ToListAsync();
+			var accounts = await this._context.Accounts.Where(x => friends.Contains(x.Id)).ToListAsync();
+
+			return accounts;
 		}
 
 		private async Task<bool> IsExistAccountA(int id)
