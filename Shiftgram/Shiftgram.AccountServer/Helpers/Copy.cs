@@ -14,12 +14,12 @@ namespace Shiftgram.AccountServer.Helpers
 			};
 		}
 
-		public static Friend CopyToFriend(FriendViewModel model)
+		public static Friend CopyToFriend(int accountAId, int accountBId)
 		{
 			return new Friend
 			{
-				AccountAId = model.AccountAId,
-				AccountBId = model.AccountBId
+				AccountAId = accountAId,
+				AccountBId = accountBId
 			};
 		}
 	}

@@ -12,10 +12,12 @@ namespace Shiftgram.AccountServer.Controllers
     public class FriendController : ApiController
     {
 		private IFriendRepository _friendRepository;
+		private IAccountRepository _accountRepository;
 
-		public FriendController(IFriendRepository friendRepository)
+		public FriendController(IFriendRepository friendRepository, IAccountRepository accountRepository)
 		{
 			this._friendRepository = friendRepository;
+			this._accountRepository = accountRepository;
 		}
 
 		[HttpPost]
@@ -23,12 +25,16 @@ namespace Shiftgram.AccountServer.Controllers
 		{
 			try
 			{
-				var item = Copy.CopyToFriend(model);
-				int rows = await this._friendRepository.Add(item);
-
-				if(rows > 0)
+				var accountB = await this._accountRepository.GetByPhone(model.AccountBPhone);
+				if(accountB != null)
 				{
-					return Ok();
+					var item = Copy.CopyToFriend(model.AccountAId, accountB.Id);
+					int rows = await this._friendRepository.Add(item);
+
+					if (rows > 0)
+					{
+						return Ok();
+					}
 				}
 			}
 			catch(AccountException)
