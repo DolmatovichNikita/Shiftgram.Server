@@ -1,4 +1,5 @@
-﻿using Shiftgram.Core.Enums;
+﻿using Shiftgram.AccountServer.Helpers;
+using Shiftgram.Core.Enums;
 using Shiftgram.Core.Exceptions;
 using Shiftgram.Core.Models;
 using Shiftgram.Core.Repository;
@@ -62,8 +63,9 @@ namespace Shiftgram.AccountServer.Controllers
 			try
 			{
 				Account account = await this._accountRepository.GetById(id);
+				var accountViewModel = Copy.CopyToAccountViewModel(account);
 
-				return Ok(account);
+				return Ok(accountViewModel);
 			}
 			catch(AccountException)
 			{
@@ -78,8 +80,9 @@ namespace Shiftgram.AccountServer.Controllers
 			try
 			{
 				Account account = await this._accountRepository.GetByPhone(phone);
+				var accountViewModel = Copy.CopyToAccountViewModel(account);
 
-				return Ok(account);
+				return Ok(accountViewModel);
 			}
 			catch(AccountException)
 			{

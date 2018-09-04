@@ -22,5 +22,21 @@ namespace Shiftgram.AccountServer.Helpers
 				AccountBId = accountBId
 			};
 		}
+
+		public static AccountViewModel CopyToAccountViewModel(Account account)
+		{
+			return new AccountViewModel
+			{
+				Id = account.Id,
+				FirstName = account.FirstName,
+				LastName = account.LastName,
+				Bio = account.Bio,
+				Phone = account.Phone,
+				GenderName = account.Gender.Name,
+				Username = account.Username,
+				PhotoUrl = account.PhotoUrl,
+				IsAuth = bool.Parse(account.IsAuth.ToString())
+			};
+		}
 	}
 }
