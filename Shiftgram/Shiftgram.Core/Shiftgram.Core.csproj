@@ -102,6 +102,7 @@
     <Compile Include="Repository\IPhoneRepository.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\IVerificationRepository.cs" />
+    <Compile Include="Repository\PhoneRepository.cs" />
     <Compile Include="Repository\VerificationRepository.cs" />
     <Compile Include="Strategy\AccountUpdate.cs" />
     <Compile Include="Strategy\AccountUpdateViewModel.cs" />
