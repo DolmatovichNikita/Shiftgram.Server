@@ -99,6 +99,7 @@
     <Compile Include="Repository\FriendRepository.cs" />
     <Compile Include="Repository\IAccountRepository.cs" />
     <Compile Include="Repository\IFriendRepository.cs" />
+    <Compile Include="Repository\IPhoneRepository.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\IVerificationRepository.cs" />
     <Compile Include="Repository\VerificationRepository.cs" />
