@@ -11,7 +11,7 @@ using Twilio.Types;
 
 namespace Shiftgram.AccountServer.Controllers
 {
-	[RoutePrefix("api/phone")]
+	[RoutePrefix("api/verify")]
     public class PhoneVerifyController : ApiController
     {
 		private readonly string _accountSid = "ACf2a5fcdbf1a63fc1e5f21610b4cd68a0";

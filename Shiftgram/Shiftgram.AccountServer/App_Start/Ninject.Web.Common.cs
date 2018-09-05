@@ -67,6 +67,7 @@ namespace Shiftgram.AccountServer.App_Start
 			kernel.Bind<IAccountRepository>().To<AccountRepository>();
 			kernel.Bind<IVerificationRepository>().To<VerificationRepository>();
 			kernel.Bind<IFriendRepository>().To<FriendRepository>();
+			kernel.Bind<IPhoneRepository>().To<PhoneRepository>();
         }        
     }
 }
