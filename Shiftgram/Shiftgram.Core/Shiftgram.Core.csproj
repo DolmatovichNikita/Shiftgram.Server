@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="Enums\DbAnswerCode.cs" />
     <Compile Include="Exceptions\AccountException.cs" />
+    <Compile Include="Extensions\StringExtension.cs" />
     <Compile Include="Models\Account.cs">
       <DependentUpon>ShiftgramModels.tt</DependentUpon>
     </Compile>

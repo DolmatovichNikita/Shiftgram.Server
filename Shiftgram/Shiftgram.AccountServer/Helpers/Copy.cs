@@ -1,6 +1,5 @@
 ﻿using Shiftgram.AccountServer.Models;
 using Shiftgram.Core.Models;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace Shiftgram.AccountServer.Helpers
