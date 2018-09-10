@@ -62,6 +62,7 @@ namespace Shiftgram.AccountServer.Controllers
 		{
 			try
 			{
+
 				Account account = await this._accountRepository.GetById(id);
 				var accountViewModel = Copy.CopyToAccountViewModel(account);
 

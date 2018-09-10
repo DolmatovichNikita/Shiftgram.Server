@@ -33,7 +33,7 @@ namespace Shiftgram.AccountServer.Helpers
 				LastName = account.LastName,
 				Bio = account.Bio,
 				Phone = account.Phone,
-				GenderName = account.Gender.Name,
+				GenderName = account.GenderId != null ? account.Gender.Name : null,
 				Username = account.Username,
 				PhotoUrl = account.PhotoUrl,
 				IsAuth = bool.Parse(account.IsAuth.ToString())
