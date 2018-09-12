@@ -6,7 +6,7 @@ namespace Shiftgram.Core.Repository
 	public interface IVerificationRepository
 	{
 		Task AddCode(Verification item);
-		Task DeleteCode(string phone);
+		Task DeleteCode(int id);
 		Task<Verification> GetById(int id);
 	}
 }

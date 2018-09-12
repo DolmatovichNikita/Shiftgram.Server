@@ -35,8 +35,7 @@ namespace Shiftgram.AccountServer.Helpers
 				Phone = account.Phone,
 				GenderName = account.GenderId != null ? account.Gender.Name : null,
 				Username = account.Username,
-				PhotoUrl = account.PhotoUrl,
-				IsAuth = bool.Parse(account.IsAuth.ToString())
+				PhotoUrl = account.PhotoUrl
 			};
 		}
 

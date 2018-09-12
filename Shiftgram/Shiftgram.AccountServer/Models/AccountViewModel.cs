@@ -10,6 +10,5 @@
 		public string GenderName { get; set; }
 		public string Phone { get; set; }
 		public string Username { get; set; }
-		public bool IsAuth { get; set; }
 	}
 }

@@ -65,7 +65,7 @@ namespace Shiftgram.AccountServer.Controllers
 					{
 						if (verification.Account.Phone == model.Number && verification.VerifyCode == model.Code.ToString())
 						{
-							await this._verificationRepository.DeleteCode(model.Number);
+							await this._verificationRepository.DeleteCode(model.Id);
 							return Ok();
 						}
 					}

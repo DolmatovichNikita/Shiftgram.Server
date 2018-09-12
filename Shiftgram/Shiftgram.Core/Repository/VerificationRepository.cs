@@ -25,9 +25,9 @@ namespace Shiftgram.Core.Repository
 			}
 		}
 
-		public async Task DeleteCode(string phone)
+		public async Task DeleteCode(int id)
 		{
-			var dbEntry = await this._context.Verifications.FirstOrDefaultAsync(x => x.Account.Phone == phone);
+			var dbEntry = await this._context.Verifications.FirstOrDefaultAsync(x => x.Id == id);
 
 			if(dbEntry != null)
 			{
