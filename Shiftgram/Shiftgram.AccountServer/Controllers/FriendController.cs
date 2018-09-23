@@ -23,21 +23,21 @@ namespace Shiftgram.AccountServer.Controllers
 		}
 
 		[HttpPost]
-		public async Task<IHttpActionResult> AddFriend(FriendViewModel model)
+		public async Task<IHttpActionResult> AddFriend(List<FriendViewModel> models)
 		{
 			try
 			{
-				var accountB = await this._accountRepository.GetByPhone(model.AccountBPhone);
-				if(accountB != null)
+				foreach (var model in models)
 				{
-					var item = Copy.CopyToFriend(model.AccountAId, accountB.Id);
-					int rows = await this._friendRepository.Add(item);
-
-					if (rows > 0)
+					var accountB = await this._accountRepository.GetByPhone(model.AccountBPhone);
+					if (accountB != null)
 					{
-						return Ok();
+						var item = Copy.CopyToFriend(model.AccountAId, accountB.Id);
+						await this._friendRepository.Add(item);
 					}
 				}
+
+				return Ok();
 			}
 			catch(AccountException)
 			{
