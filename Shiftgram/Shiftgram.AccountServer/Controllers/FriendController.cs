@@ -43,8 +43,6 @@ namespace Shiftgram.AccountServer.Controllers
 			{
 				return BadRequest();
 			}
-
-			return BadRequest();
 		}
 
 		[HttpDelete]
