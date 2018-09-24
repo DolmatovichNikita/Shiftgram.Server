@@ -5,6 +5,7 @@ using Shiftgram.Core.Enums;
 using Shiftgram.Core.Exceptions;
 using Shiftgram.Core.Models;
 using System.Linq;
+using System.Data.SqlClient;
 
 namespace Shiftgram.Core.Repository
 {
