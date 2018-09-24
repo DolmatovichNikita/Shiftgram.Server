@@ -7,6 +7,9 @@ using Shiftgram.Core.Models;
 using Shiftgram.Core.Repository;
 using System.Linq;
 using System;
+using System.Web.Http;
+using System.Web.Http.Results;
+using Shiftgram.AccountServer.Models;
 
 namespace Shiftgram.Tests
 {
@@ -27,6 +30,38 @@ namespace Shiftgram.Tests
             await controller.AddAccount(account);
 
             mock.Verify(x => x.Add(account), Times.Once);
+        }
+
+        [Test]
+        public async Task TestDeleteAccount()
+        {
+            Mock<IAccountRepository> mock = new Mock<IAccountRepository>();
+            mock.Setup(x => x.GetAll()).ReturnsAsync(new List<Account>
+            {
+                new Account {Id = 1},
+                new Account {Id = 2}
+            });
+            AccountController controller = new AccountController(mock.Object);
+
+            var actionResultOk = await controller.DeleteAccount(1);
+
+            Assert.AreEqual(actionResultOk.GetType(), typeof(OkResult));
+        }
+
+        [Test]
+        public async Task TestGetAllAccounts()
+        {
+            Mock<IAccountRepository> mock = new Mock<IAccountRepository>();
+            mock.Setup(x => x.GetAll()).ReturnsAsync(new List<Account>
+            {
+                new Account {Id = 1},
+                new Account {Id = 2}
+            });
+            AccountController controller = new AccountController(mock.Object);
+
+            var accounts = await controller.GetAllAccounts() as List<Account>;
+
+            Assert.AreEqual(accounts.Count, 2);
         }
     }
 }
