@@ -33,10 +33,10 @@ namespace Shiftgram.AccountServer.Helpers
 				LastName = account.LastName,
 				Bio = account.Bio,
 				Phone = account.Phone,
-				GenderName = account.Gender.Name,
+				GenderName = account.GenderId != null ? account.Gender.Name : string.Empty,
 				Username = account.Username,
 				PhotoUrl = account.PhotoUrl,
-				IsAuth = bool.Parse(account.IsAuth.ToString())
+				IsAuth = account.IsAuth != null ? account.IsAuth.Value : false
 			};
 		}
 
