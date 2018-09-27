@@ -1,4 +1,4 @@
-﻿namespace Shiftgram.AccountServer.Models
+﻿namespace Shiftgram.Core.ViewModels
 {
 	public class AccountFriendViewModel
 	{

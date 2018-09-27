@@ -2,8 +2,8 @@
 using Shiftgram.AccountServer.Models;
 using Shiftgram.Core.Enums;
 using Shiftgram.Core.Exceptions;
-using Shiftgram.Core.Models;
 using Shiftgram.Core.Repository;
+using Shiftgram.Core.ViewModels;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -60,8 +60,7 @@ namespace Shiftgram.AccountServer.Controllers
 		[Route("{accountAId:int}")]
 		public async Task<IHttpActionResult> GetFriends(int accountAId)
 		{
-			List<Account> accounts = await this._friendRepository.GetFriends(accountAId) as List<Account>;
-			var friends = Copy.CopyToAccountFriendViewModel(accounts);
+			var friends = await this._friendRepository.GetFriends(accountAId) as List<AccountFriendViewModel>;
 
 			return Ok(friends);
 		}

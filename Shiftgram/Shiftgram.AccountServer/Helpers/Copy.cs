@@ -39,22 +39,5 @@ namespace Shiftgram.AccountServer.Helpers
 				IsAuth = account.IsAuth != null ? account.IsAuth.Value : false
 			};
 		}
-
-		public static IEnumerable<AccountFriendViewModel> CopyToAccountFriendViewModel(List<Account> accounts)
-		{
-			List<AccountFriendViewModel> models = new List<AccountFriendViewModel>();
-
-			accounts.ForEach(item =>
-			{
-				models.Add(new AccountFriendViewModel
-				{
-					Id = item.Id,
-					PhotoUrl = item.PhotoUrl,
-					Username = item.Username
-				});
-			});
-
-			return models;
-		}
 	}
 }

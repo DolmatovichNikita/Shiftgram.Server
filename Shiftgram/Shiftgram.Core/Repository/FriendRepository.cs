@@ -5,6 +5,8 @@ using Shiftgram.Core.Enums;
 using Shiftgram.Core.Exceptions;
 using Shiftgram.Core.Models;
 using System.Linq;
+using Shiftgram.Core.ViewModels;
+using Shiftgram.Core.Views;
 
 namespace Shiftgram.Core.Repository
 {
@@ -60,12 +62,9 @@ namespace Shiftgram.Core.Repository
 			throw new AccountException();
 		}
 
-		public async Task<IEnumerable<Account>> GetFriends(int accountAId)
+		public async Task<IEnumerable<AccountFriendViewModel>> GetFriends(int accountAId)
 		{
-			var friends = await this._context.Friends.Where(x => x.AccountAId == accountAId).Select(x => x.AccountBId).ToListAsync();
-			var accounts = await this._context.Accounts.Where(x => friends.Contains(x.Id)).ToListAsync();
-
-			return accounts;
+			return await View.GetFriends(accountAId);
 		}
 
 		private async Task<bool> IsExistAccountA(int id)
