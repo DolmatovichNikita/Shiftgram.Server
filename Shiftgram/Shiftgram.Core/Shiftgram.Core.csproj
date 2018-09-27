@@ -116,6 +116,7 @@
     <Compile Include="Strategy\PhoneUpdate.cs" />
     <Compile Include="Strategy\PhotoUpdate.cs" />
     <Compile Include="Strategy\UsernameUpdate.cs" />
+    <Compile Include="Views\View.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

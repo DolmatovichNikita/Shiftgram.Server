@@ -6,6 +6,7 @@ using Shiftgram.Core.Enums;
 using Shiftgram.Core.Exceptions;
 using Shiftgram.Core.Models;
 using Shiftgram.Core.Strategy;
+using Shiftgram.Core.Views;
 
 namespace Shiftgram.Core.Repository
 {
@@ -29,7 +30,7 @@ namespace Shiftgram.Core.Repository
 
 			if(rows > 0)
 			{
-				await this.CreateFriendView(item.Id);
+				await View.CreateFriendView(item.Id);
 				return item.Id;
 			}
 
@@ -86,26 +87,6 @@ namespace Shiftgram.Core.Repository
 		public async Task<DbAnswerCode> Update(AccountUpdateViewModel model)
 		{
 			return await this.Updatable.Update(model);
-		}
-
-		private async Task CreateFriendView(int id)
-		{
-			string strConnection = "data source=aarsp4er1pxxe9.coqmx0efxhue.eu-central-1.rds.amazonaws.com,1433;initial catalog=Shiftgram;user id=shiftgram;password=7757739n;multipleactiveresultsets=True;application name=EntityFramework";
-
-			using (SqlConnection connection = new SqlConnection(strConnection))
-			{
-				await connection.OpenAsync();
-				using (SqlCommand command = new SqlCommand("CreateFriendView", connection))
-				{
-					command.CommandType = System.Data.CommandType.StoredProcedure;
-					command.Parameters.Add(new SqlParameter { ParameterName = "@NameView", Value = "Account" + id });
-					command.Parameters.Add(new SqlParameter { ParameterName = "@AccountId", Value = id });
-
-					await command.ExecuteNonQueryAsync();
-				}
-
-				connection.Close();
-			}
 		}
 	}
 }
