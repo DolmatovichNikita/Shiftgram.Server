@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.SqlClient;
 using System.Threading.Tasks;
 using Shiftgram.Core.Enums;
 using Shiftgram.Core.Exceptions;
@@ -13,10 +12,12 @@ namespace Shiftgram.Core.Repository
 	public class AccountRepository : IAccountRepository
 	{
 		private ShiftgramContext _context;
+		private ViewCreator creator;
 
 		public AccountRepository()
 		{
 			this._context = new ShiftgramContext();
+			this.creator = new FriendViewCreator();
 		}
 
 		public ShiftgramContext Context => this._context;
@@ -30,7 +31,8 @@ namespace Shiftgram.Core.Repository
 
 			if(rows > 0)
 			{
-				await View.CreateFriendView(item.Id);
+				var view = this.creator.CreateView() as FriendView;
+				await view.CreateFriendView(item.Id);
 				return item.Id;
 			}
 

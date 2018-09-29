@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Shiftgram.Core.Enums;
 using Shiftgram.Core.Exceptions;
 using Shiftgram.Core.Models;
-using System.Linq;
 using Shiftgram.Core.ViewModels;
 using Shiftgram.Core.Views;
 
@@ -13,10 +12,12 @@ namespace Shiftgram.Core.Repository
 	public class FriendRepository : IFriendRepository
 	{
 		private ShiftgramContext _context;
+		private ViewCreator creator;
 
 		public FriendRepository()
 		{
 			this._context = new ShiftgramContext();
+			this.creator = new FriendViewCreator();
 		}
 
 		public async Task<int> Add(Friend item)
@@ -64,7 +65,8 @@ namespace Shiftgram.Core.Repository
 
 		public async Task<IEnumerable<AccountFriendViewModel>> GetFriends(int accountAId)
 		{
-			return await View.GetFriends(accountAId);
+			var view = this.creator.CreateView() as FriendView;
+			return await view.GetFriends(accountAId);
 		}
 
 		private async Task<bool> IsExistAccountA(int id)
