@@ -1,6 +1,5 @@
 ﻿using Shiftgram.AccountServer.Models;
 using Shiftgram.Core.Models;
-using System.Collections.Generic;
 
 namespace Shiftgram.AccountServer.Helpers
 {
@@ -37,6 +36,20 @@ namespace Shiftgram.AccountServer.Helpers
 				Username = account.Username,
 				PhotoUrl = account.PhotoUrl,
 				IsAuth = account.IsAuth != null ? account.IsAuth.Value : false
+			};
+		}
+
+		public static Account CopyToAccount(AccountViewModel model)
+		{
+			return new Account
+			{
+				FirstName = model.FirstName,
+				LastName = model.LastName,
+				Username = model.Username,
+				Bio = model.Bio,
+				Phone = model.Phone,
+				PhotoUrl = model.PhotoUrl,
+				GenderId = model.GenderName == "Male" ? 1 : 2
 			};
 		}
 	}
