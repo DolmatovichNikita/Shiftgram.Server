@@ -53,9 +53,12 @@ namespace Shiftgram.AccountServer.Controllers
 		}
 
 		[HttpGet]
-		public async Task<IEnumerable<Account>> GetAllAccounts()
+		public async Task<IEnumerable<AccountViewModel>> GetAllAccounts()
 		{
-			return await this._accountRepository.GetAll();
+			var accounts = await this._accountRepository.GetAll() as List<Account>;
+			var models = Copy.CopyToEnumerableAccountViewModel(accounts);
+
+			return models;
 		}
 
 		[HttpGet]
