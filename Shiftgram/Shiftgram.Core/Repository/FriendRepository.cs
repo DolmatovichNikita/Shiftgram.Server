@@ -22,15 +22,18 @@ namespace Shiftgram.Core.Repository
 
 		public async Task<int> Add(Friend item)
 		{
-			var model = await this._context.Friends.FirstOrDefaultAsync<Friend>(x => x.AccountAId == item.AccountAId && x.AccountBId == item.AccountBId);
-			if(model == null)
+			if (item.AccountAId != item.AccountBId)
 			{
-				this._context.Friends.Add(item);
-				int rows = await this._context.SaveChangesAsync();
-
-				if (rows > 0)
+				var model = await this._context.Friends.FirstOrDefaultAsync<Friend>(x => x.AccountAId == item.AccountAId && x.AccountBId == item.AccountBId);
+				if (model == null)
 				{
-					return item.Id;
+					this._context.Friends.Add(item);
+					int rows = await this._context.SaveChangesAsync();
+
+					if (rows > 0)
+					{
+						return item.Id;
+					}
 				}
 			}
 			

@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using System.Resources;
+using System.Threading.Tasks;
 
 namespace Shiftgram.Core.Views
 {
@@ -11,5 +12,7 @@ namespace Shiftgram.Core.Views
 		{
 			this._connection = new ResourceManager("Shiftgram.Core.Resources", Assembly.GetExecutingAssembly()).GetString("DatabaseConnection");
 		}
+
+		public abstract Task CreateView(params object[] parameters);
 	}
 }

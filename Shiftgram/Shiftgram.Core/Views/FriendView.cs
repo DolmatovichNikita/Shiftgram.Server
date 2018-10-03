@@ -7,8 +7,10 @@ namespace Shiftgram.Core.Views
 {
 	internal class FriendView: View
 	{
-		public async Task CreateFriendView(int accountAId)
+		public override async Task CreateView(params object[] parameters)
 		{
+			int accountAId = int.Parse(parameters[0].ToString());
+
 			using (SqlConnection connection = new SqlConnection(this._connection))
 			{
 				await connection.OpenAsync();

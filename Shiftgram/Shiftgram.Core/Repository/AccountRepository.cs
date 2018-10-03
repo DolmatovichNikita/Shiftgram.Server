@@ -31,8 +31,8 @@ namespace Shiftgram.Core.Repository
 
 			if(rows > 0)
 			{
-				var view = this.creator.CreateView() as FriendView;
-				await view.CreateFriendView(item.Id);
+				var view = this.creator.CreateView();
+				await view.CreateView(item.Id);
 				return item.Id;
 			}
 
