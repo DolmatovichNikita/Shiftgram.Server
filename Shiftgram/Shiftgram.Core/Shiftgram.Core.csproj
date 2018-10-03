@@ -106,6 +106,11 @@
     <Compile Include="Repository\IVerificationRepository.cs" />
     <Compile Include="Repository\PhoneRepository.cs" />
     <Compile Include="Repository\VerificationRepository.cs" />
+    <Compile Include="Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Strategy\AccountUpdate.cs" />
     <Compile Include="Strategy\AccountUpdateViewModel.cs" />
     <Compile Include="Strategy\AuthUpdate.cs" />
@@ -116,6 +121,11 @@
     <Compile Include="Strategy\PhoneUpdate.cs" />
     <Compile Include="Strategy\PhotoUpdate.cs" />
     <Compile Include="Strategy\UsernameUpdate.cs" />
+    <Compile Include="ViewModels\AccountFriendViewModel.cs" />
+    <Compile Include="Views\FriendView.cs" />
+    <Compile Include="Views\FriendViewCreator.cs" />
+    <Compile Include="Views\View.cs" />
+    <Compile Include="Views\ViewCreator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -142,6 +152,12 @@
       <DependentUpon>ShiftgramModels.edmx</DependentUpon>
       <LastGenOutput>ShiftgramModels.cs</LastGenOutput>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

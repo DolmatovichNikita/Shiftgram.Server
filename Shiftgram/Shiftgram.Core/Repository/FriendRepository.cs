@@ -4,29 +4,39 @@ using System.Threading.Tasks;
 using Shiftgram.Core.Enums;
 using Shiftgram.Core.Exceptions;
 using Shiftgram.Core.Models;
-using System.Linq;
+using Shiftgram.Core.ViewModels;
+using Shiftgram.Core.Views;
 
 namespace Shiftgram.Core.Repository
 {
 	public class FriendRepository : IFriendRepository
 	{
 		private ShiftgramContext _context;
+		private ViewCreator creator;
 
 		public FriendRepository()
 		{
 			this._context = new ShiftgramContext();
+			this.creator = new FriendViewCreator();
 		}
 
 		public async Task<int> Add(Friend item)
 		{
-			this._context.Friends.Add(item);
-			int rows = await this._context.SaveChangesAsync();
-
-			if(rows > 0)
+			if (item.AccountAId != item.AccountBId)
 			{
-				return item.Id;
-			}
+				var model = await this._context.Friends.FirstOrDefaultAsync<Friend>(x => x.AccountAId == item.AccountAId && x.AccountBId == item.AccountBId);
+				if (model == null)
+				{
+					this._context.Friends.Add(item);
+					int rows = await this._context.SaveChangesAsync();
 
+					if (rows > 0)
+					{
+						return item.Id;
+					}
+				}
+			}
+			
 			throw new AccountException();
 		}
 
@@ -60,12 +70,10 @@ namespace Shiftgram.Core.Repository
 			throw new AccountException();
 		}
 
-		public async Task<IEnumerable<Account>> GetFriends(int accountAId)
+		public async Task<IEnumerable<AccountFriendViewModel>> GetFriends(int accountAId)
 		{
-			var friends = await this._context.Friends.Where(x => x.AccountAId == accountAId).Select(x => x.AccountBId).ToListAsync();
-			var accounts = await this._context.Accounts.Where(x => friends.Contains(x.Id)).ToListAsync();
-
-			return accounts;
+			var view = this.creator.CreateView() as FriendView;
+			return await view.GetFriends(accountAId);
 		}
 
 		private async Task<bool> IsExistAccountA(int id)

@@ -1,4 +1,5 @@
 ﻿using Shiftgram.AccountServer.Helpers;
+using Shiftgram.AccountServer.Models;
 using Shiftgram.Core.Enums;
 using Shiftgram.Core.Exceptions;
 using Shiftgram.Core.Models;
@@ -21,12 +22,13 @@ namespace Shiftgram.AccountServer.Controllers
 		}
 
 		[HttpPost]
-		public async Task<int> AddAccount(Account account)
+		public async Task<int> AddAccount(AccountViewModel model)
 		{
 			int id = 0;
 
 			try
 			{
+				Account account = Copy.CopyToAccount(model);
 				id = await this._accountRepository.Add(account);
 			}
 			catch(AccountException)
@@ -51,9 +53,12 @@ namespace Shiftgram.AccountServer.Controllers
 		}
 
 		[HttpGet]
-		public async Task<IEnumerable<Account>> GetAllAccounts()
+		public async Task<IEnumerable<AccountViewModel>> GetAllAccounts()
 		{
-			return await this._accountRepository.GetAll();
+			var accounts = await this._accountRepository.GetAll() as List<Account>;
+			var models = Copy.CopyToEnumerableAccountViewModel(accounts);
+
+			return models;
 		}
 
 		[HttpGet]

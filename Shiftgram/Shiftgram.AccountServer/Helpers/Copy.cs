@@ -40,21 +40,40 @@ namespace Shiftgram.AccountServer.Helpers
 			};
 		}
 
-		public static IEnumerable<AccountFriendViewModel> CopyToAccountFriendViewModel(List<Account> accounts)
+		public static IEnumerable<AccountViewModel> CopyToEnumerableAccountViewModel(List<Account> accounts)
 		{
-			List<AccountFriendViewModel> models = new List<AccountFriendViewModel>();
+			List<AccountViewModel> models = new List<AccountViewModel>();
 
-			accounts.ForEach(item =>
+			accounts.ForEach((account) =>
 			{
-				models.Add(new AccountFriendViewModel
+				models.Add(new AccountViewModel
 				{
-					Id = item.Id,
-					PhotoUrl = item.PhotoUrl,
-					Username = item.Username
+					Id = account.Id,
+					FirstName = account.FirstName,
+					LastName = account.LastName,
+					Bio = account.Bio,
+					Phone = account.Phone,
+					PhotoUrl = account.PhotoUrl,
+					GenderName = account.GenderId != null ? account.Gender.Name : string.Empty,
+					Username = account.Username
 				});
 			});
 
 			return models;
+		}
+
+		public static Account CopyToAccount(AccountViewModel model)
+		{
+			return new Account
+			{
+				FirstName = model.FirstName,
+				LastName = model.LastName,
+				Username = model.Username,
+				Bio = model.Bio,
+				Phone = model.Phone,
+				PhotoUrl = model.PhotoUrl,
+				GenderId = model.GenderName == "Male" ? 1 : 2
+			};
 		}
 	}
 }
