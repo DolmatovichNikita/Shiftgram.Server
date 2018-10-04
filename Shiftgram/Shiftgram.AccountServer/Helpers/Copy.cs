@@ -36,7 +36,8 @@ namespace Shiftgram.AccountServer.Helpers
 				GenderName = account.GenderId != null ? account.Gender.Name : string.Empty,
 				Username = account.Username,
 				PhotoUrl = account.PhotoUrl,
-				IsAuth = account.IsAuth != null ? account.IsAuth.Value : false
+				IsAuth = account.IsAuth != null ? account.IsAuth.Value : false,
+				Language = account.Language
 			};
 		}
 
@@ -55,7 +56,8 @@ namespace Shiftgram.AccountServer.Helpers
 					Phone = account.Phone,
 					PhotoUrl = account.PhotoUrl,
 					GenderName = account.GenderId != null ? account.Gender.Name : string.Empty,
-					Username = account.Username
+					Username = account.Username,
+					Language = account.Language
 				});
 			});
 

@@ -46,7 +46,8 @@ namespace Shiftgram.Core.Views
 								Username = await reader.IsDBNullAsync(0) ? string.Empty : reader.GetString(0),
 								PhotoUrl = await reader.IsDBNullAsync(1) ? string.Empty : reader.GetString(1),
 								Id = reader.GetInt32(2),
-								Phone = reader.GetString(3)
+								Phone = reader.GetString(3),
+								Language = reader.GetString(4)
 							});
 						}
 					}
