@@ -142,6 +142,12 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Models\ShiftgramModels.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ShiftgramModels.edmx</DependentUpon>
@@ -152,12 +158,6 @@
       <DependentUpon>ShiftgramModels.edmx</DependentUpon>
       <LastGenOutput>ShiftgramModels.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
