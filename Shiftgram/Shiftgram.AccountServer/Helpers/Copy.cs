@@ -72,7 +72,8 @@ namespace Shiftgram.AccountServer.Helpers
 				Bio = model.Bio,
 				Phone = model.Phone,
 				PhotoUrl = model.PhotoUrl,
-				GenderId = model.GenderName == "Male" ? 1 : 2
+				GenderId = model.GenderName == "Male" ? 1 : 2,
+				Language = model.Language
 			};
 		}
 	}
