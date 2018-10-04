@@ -30,6 +30,8 @@ namespace Shiftgram.Core.Strategy
 					return new PhoneUpdate(this._context);
 				case "AuthUpdate":
 					return new AuthUpdate(this._context);
+				case "LanguageUpdate":
+					return new LanguageUpdate(this._context);
 			}
 
 			throw new AccountException();

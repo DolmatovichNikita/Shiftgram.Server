@@ -11,5 +11,6 @@
 		public string Phone { get; set; }
 		public string Username { get; set; }
 		public bool IsAuth { get; set; }
+		public string Language { get; set; }
 	}
 }

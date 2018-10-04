@@ -30,6 +30,7 @@ namespace Shiftgram.Core.Models
         public string Phone { get; set; }
         public Nullable<bool> IsAuth { get; set; }
         public Nullable<int> GenderId { get; set; }
+        public string Language { get; set; }
     
         public virtual Gender Gender { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

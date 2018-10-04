@@ -6,5 +6,6 @@
 		public string Username { get; set; }
 		public string PhotoUrl { get; set; }
 		public string Phone { get; set; }
+		public string Language { get; set; }
 	}
 }
