@@ -11,6 +11,7 @@
 		public string Phone { get; set; }
 		public bool IsAuth { get; set; }
 		public string GenderName { get; set; }
+		public string Language { get; set; }
 		public string UpdateType { get; set; }
 	}
 }

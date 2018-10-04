@@ -118,6 +118,7 @@
     <Compile Include="Strategy\GenderUpdate.cs" />
     <Compile Include="Strategy\InitialsUpdate.cs" />
     <Compile Include="Strategy\IUpdatableAccount.cs" />
+    <Compile Include="Strategy\LanguageUpdate.cs" />
     <Compile Include="Strategy\PhoneUpdate.cs" />
     <Compile Include="Strategy\PhotoUpdate.cs" />
     <Compile Include="Strategy\UsernameUpdate.cs" />
