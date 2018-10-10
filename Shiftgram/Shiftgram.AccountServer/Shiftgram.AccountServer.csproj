@@ -169,6 +169,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Copy.cs" />
+    <Compile Include="Models\AccessTokenModel.cs" />
     <Compile Include="Models\AccountViewModel.cs" />
     <Compile Include="Models\FriendViewModel.cs" />
     <Compile Include="Models\PhoneVerifyViewModel.cs" />
