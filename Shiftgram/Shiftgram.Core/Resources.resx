@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AccountApiKeySID" xml:space="preserve">
+    <value>SKbee5c87f96823b291c1a1b745e379c2f</value>
+  </data>
+  <data name="AccountSID" xml:space="preserve">
+    <value>ACf2a5fcdbf1a63fc1e5f21610b4cd68a0</value>
+  </data>
+  <data name="ApiKeySecret" xml:space="preserve">
+    <value>SKbee5c87f96823b291c1a1b745e379c2f</value>
+  </data>
   <data name="DatabaseConnection" xml:space="preserve">
     <value>data source=aarsp4er1pxxe9.coqmx0efxhue.eu-central-1.rds.amazonaws.com,1433;initial catalog=Shiftgram;user id=shiftgram;password=7757739n;multipleactiveresultsets=True;application name=EntityFramework</value>
   </data>

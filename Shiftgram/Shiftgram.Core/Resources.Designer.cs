@@ -61,6 +61,33 @@ namespace Shiftgram.Core {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SKbee5c87f96823b291c1a1b745e379c2f.
+        /// </summary>
+        internal static string AccountApiKeySID {
+            get {
+                return ResourceManager.GetString("AccountApiKeySID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ACf2a5fcdbf1a63fc1e5f21610b4cd68a0.
+        /// </summary>
+        internal static string AccountSID {
+            get {
+                return ResourceManager.GetString("AccountSID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SKbee5c87f96823b291c1a1b745e379c2f.
+        /// </summary>
+        internal static string ApiKeySecret {
+            get {
+                return ResourceManager.GetString("ApiKeySecret", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to data source=aarsp4er1pxxe9.coqmx0efxhue.eu-central-1.rds.amazonaws.com,1433;initial catalog=Shiftgram;user id=shiftgram;password=7757739n;multipleactiveresultsets=True;application name=EntityFramework.
         /// </summary>
         internal static string DatabaseConnection {
