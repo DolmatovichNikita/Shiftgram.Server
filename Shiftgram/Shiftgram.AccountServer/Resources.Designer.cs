@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Shiftgram.Core {
+namespace Shiftgram.AccountServer {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Shiftgram.Core {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Shiftgram.Core.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Shiftgram.AccountServer.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -84,15 +84,6 @@ namespace Shiftgram.Core {
         internal static string ApiKeySecret {
             get {
                 return ResourceManager.GetString("ApiKeySecret", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to data source=aarsp4er1pxxe9.coqmx0efxhue.eu-central-1.rds.amazonaws.com,1433;initial catalog=Shiftgram;user id=shiftgram;password=7757739n;multipleactiveresultsets=True;application name=EntityFramework.
-        /// </summary>
-        internal static string DatabaseConnection {
-            get {
-                return ResourceManager.GetString("DatabaseConnection", resourceCulture);
             }
         }
     }

@@ -126,7 +126,4 @@
   <data name="ApiKeySecret" xml:space="preserve">
     <value>SKbee5c87f96823b291c1a1b745e379c2f</value>
   </data>
-  <data name="DatabaseConnection" xml:space="preserve">
-    <value>data source=aarsp4er1pxxe9.coqmx0efxhue.eu-central-1.rds.amazonaws.com,1433;initial catalog=Shiftgram;user id=shiftgram;password=7757739n;multipleactiveresultsets=True;application name=EntityFramework</value>
-  </data>
 </root>
