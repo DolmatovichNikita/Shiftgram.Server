@@ -6,6 +6,7 @@ using Shiftgram.Core.Exceptions;
 using Shiftgram.Core.Models;
 using Shiftgram.Core.Strategy;
 using Shiftgram.Core.Views;
+using System.Linq;
 
 namespace Shiftgram.Core.Repository
 {
@@ -45,6 +46,7 @@ namespace Shiftgram.Core.Repository
 
 			if(dbEntry != null)
 			{
+				this._context.Friends.ToList().RemoveAll(x => x.AccountAId == dbEntry.Id);
 				this._context.Accounts.Remove(dbEntry);
 				int rows = await this._context.SaveChangesAsync();
 
