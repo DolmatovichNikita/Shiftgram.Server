@@ -14,5 +14,7 @@ namespace Shiftgram.Core.Views
 		}
 
 		public abstract Task CreateView(params object[] parameters);
+
+		public abstract Task DropView(string viewName);
 	}
 }
