@@ -6,6 +6,7 @@ using Shiftgram.Core.Exceptions;
 using Shiftgram.Core.Models;
 using Shiftgram.Core.Strategy;
 using Shiftgram.Core.Views;
+using System.Linq;
 
 namespace Shiftgram.Core.Repository
 {
@@ -13,11 +14,13 @@ namespace Shiftgram.Core.Repository
 	{
 		private ShiftgramContext _context;
 		private ViewCreator creator;
+		private View _view;
 
 		public AccountRepository()
 		{
 			this._context = new ShiftgramContext();
 			this.creator = new FriendViewCreator();
+			this._view = creator.CreateView();
 		}
 
 		public ShiftgramContext Context => this._context;
@@ -31,8 +34,7 @@ namespace Shiftgram.Core.Repository
 
 			if(rows > 0)
 			{
-				var view = this.creator.CreateView();
-				await view.CreateView(item.Id);
+				await this._view.CreateView(item.Id);
 				return item.Id;
 			}
 
@@ -45,6 +47,9 @@ namespace Shiftgram.Core.Repository
 
 			if(dbEntry != null)
 			{
+				string viewName = $"Account{dbEntry.Id}";
+				await this._view.DropView(viewName);
+				this._context.Friends.ToList().RemoveAll(x => x.AccountAId == dbEntry.Id);
 				this._context.Accounts.Remove(dbEntry);
 				int rows = await this._context.SaveChangesAsync();
 

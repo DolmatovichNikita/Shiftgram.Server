@@ -61,7 +61,7 @@ namespace Shiftgram.AccountServer {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SKbee5c87f96823b291c1a1b745e379c2f.
+        ///   Looks up a localized string similar to SKae15f3a5d5259c436d3d4a2456ca23f4.
         /// </summary>
         internal static string AccountApiKeySID {
             get {
@@ -79,7 +79,7 @@ namespace Shiftgram.AccountServer {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SKbee5c87f96823b291c1a1b745e379c2f.
+        ///   Looks up a localized string similar to uBpVmSEygLT8simBVw4OWatsRGdUKli1.
         /// </summary>
         internal static string ApiKeySecret {
             get {

@@ -27,6 +27,23 @@ namespace Shiftgram.Core.Views
 			}
 		}
 
+		public override async Task DropView(string viewName)
+		{
+			using (SqlConnection connection = new SqlConnection(this._connection))
+			{
+				await connection.OpenAsync();
+				using (SqlCommand command = new SqlCommand("DropFriendView", connection))
+				{
+					command.CommandType = System.Data.CommandType.StoredProcedure;
+					command.Parameters.Add(new SqlParameter { ParameterName = "NameView", Value = viewName });
+
+					await command.ExecuteNonQueryAsync();
+				}
+
+				connection.Close();
+			}
+		}
+
 		public async Task<IEnumerable<AccountFriendViewModel>> GetFriends(int accountAId)
 		{
 			List<AccountFriendViewModel> models = new List<AccountFriendViewModel>();

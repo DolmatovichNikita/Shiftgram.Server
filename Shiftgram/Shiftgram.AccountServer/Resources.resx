@@ -118,12 +118,12 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccountApiKeySID" xml:space="preserve">
-    <value>SKbee5c87f96823b291c1a1b745e379c2f</value>
+    <value>SKae15f3a5d5259c436d3d4a2456ca23f4</value>
   </data>
   <data name="AccountSID" xml:space="preserve">
     <value>ACf2a5fcdbf1a63fc1e5f21610b4cd68a0</value>
   </data>
   <data name="ApiKeySecret" xml:space="preserve">
-    <value>SKbee5c87f96823b291c1a1b745e379c2f</value>
+    <value>uBpVmSEygLT8simBVw4OWatsRGdUKli1</value>
   </data>
 </root>

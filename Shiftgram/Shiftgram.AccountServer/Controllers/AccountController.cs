@@ -85,7 +85,8 @@ namespace Shiftgram.AccountServer.Controllers
 		{
 			try
 			{
-				Account account = await this._accountRepository.GetByPhone(phone);
+				string phoneNumber = $"+{phone}";
+				Account account = await this._accountRepository.GetByPhone(phoneNumber);
 				var accountViewModel = Copy.CopyToAccountViewModel(account);
 
 				return Ok(accountViewModel);
